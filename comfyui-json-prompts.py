@@ -5,6 +5,7 @@ class JSONPromptLoader:
     def __init__(self):
         self.prompts = []
         self.current_index = 0
+        self.counter = 0
 
     @classmethod
     def INPUT_TYPES(s):
@@ -30,7 +31,8 @@ class JSONPromptLoader:
         else:  # random
             prompt = random.choice(self.prompts)
         
-        return (prompt,)
+        self.counter += 1
+        return (f"{prompt} [{self.counter}]",)  # Ajout d'un compteur invisible
 
 NODE_CLASS_MAPPINGS = {
     "JSONPromptLoader": JSONPromptLoader
