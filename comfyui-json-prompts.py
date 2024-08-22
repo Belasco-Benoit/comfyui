@@ -1,8 +1,11 @@
 import json
 import random
-from server import PromptServer
 
 class JSONPromptLoader:
+    def __init__(self):
+        self.prompts = []
+        self.current_index = 0
+
     @classmethod
     def INPUT_TYPES(s):
         return {
@@ -15,10 +18,6 @@ class JSONPromptLoader:
     RETURN_TYPES = ("STRING",)
     FUNCTION = "load_prompt"
     CATEGORY = "prompt"
-
-    def __init__(self):
-        self.prompts = []
-        self.current_index = 0
 
     def load_prompt(self, json_file, mode):
         if not self.prompts:
