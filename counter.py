@@ -12,7 +12,7 @@ class Counter:
     
     RETURN_TYPES = ("INT",)
     FUNCTION = "count"
-    CATEGORY = "utils"
+    CATEGORY = "prompt"
 
     def count(self, increment):
         self.count += increment

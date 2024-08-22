@@ -1,3 +1,6 @@
+import json
+import random
+
 class JSONPromptLoader:
     def __init__(self):
         self.prompts = []
