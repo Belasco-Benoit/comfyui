@@ -32,6 +32,33 @@ class JSONPromptLoader:
         
         return (prompt,)
 
+
+class Counter:
+    def __init__(self):
+        self.count = 0
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "increment": ("INT", {"default": 1, "min": 1, "max": 999})
+            }
+        }
+    
+    RETURN_TYPES = ("INT",)
+    FUNCTION = "count"
+    CATEGORY = "utils"
+
+    def count(self, increment):
+        self.count += increment
+        return (self.count,)
+
 NODE_CLASS_MAPPINGS = {
-    "JSONPromptLoader": JSONPromptLoader
+    "JSONPromptLoader": JSONPromptLoader,
+    "Counter": Counter
+}
+
+NODE_DISPLAY_NAME_MAPPINGS = {
+    "JSONPromptLoader": "JSON Prompt Loader",
+    "Counter": "Counter"
 }
