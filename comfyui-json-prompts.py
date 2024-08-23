@@ -12,7 +12,7 @@ class JSONPromptLoader:
         logging.info("JSONPromptLoader INPUT_TYPES called")
         return {
             "required": {
-                "counter": ("INT", {"forceInput": True}),
+                "counter": ("INT", {"forceInput": True, "default": 0}),
                 "json_file": ("STRING", {"default": "prompts.json"}),
                 "mode": (["sequential", "random"], {"default": "sequential"})
                 
