@@ -1,12 +1,15 @@
 import json
 import random
+import logging
 
 class JSONPromptLoader:
     def __init__(self):
         self.prompts = []
-
+        logging.info("JSONPromptLoader initialized")
+        
     @classmethod
     def INPUT_TYPES(s):
+        logging.info("JSONPromptLoader INPUT_TYPES called")
         return {
             "required": {
                 "json_file": ("STRING", {"default": "prompts.json"}),
