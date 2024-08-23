@@ -46,21 +46,26 @@ class CustomCounter:
 
     @classmethod
     def INPUT_TYPES(s):
-        logging.info("Counter INPUT_TYPES called")
         return {
-            "required": {
-                "increment": ("INT", {"default": 0, "min": 0, "max": 999})
-            }
+            "required": {},  # Nous n'avons plus besoin d'entrée
+            "hidden": {"unique_id": "UNIQUE_ID"}  # Ceci forcera une nouvelle exécution à chaque fois
         }
     
     RETURN_TYPES = ("INT",)
     FUNCTION = "increment_count"
     CATEGORY = "utils"
 
-    def increment_count(self, increment):
-        logging.info("Counter.count called with increment: %d", increment)
-        self.count += increment
-        logging.info("New count: %d", self.count)
+    def increment_count(self, unique_id):
+        self.count += 1
+        logging.info(f"Counter incremented. New count: {self.count}")
+        return (self.count,)
+    
+    def IS_CHANGED(s, unique_id):
+        return float("nan")  # Ceci forcera une réévaluation à chaque fois
+
+    def reset_count(self):
+        self.count = 0
+        logging.info("Counter reset to 0")
         return (self.count,)
 
 NODE_CLASS_MAPPINGS = {
