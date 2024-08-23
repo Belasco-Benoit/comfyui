@@ -14,7 +14,8 @@ class JSONPromptLoader:
             "required": {
                 "counter": ("INT", {"forceInput": True, "default": 0}),
                 "json_file": ("STRING", {"default": "prompts.json"}),
-                "mode": (["sequential", "random"], {"default": "sequential"})
+                "mode": (["sequential", "random"], {"default": "sequential"}),
+                "external_index": ("INT", {"forceInput": True, "default": 0, "min": 0, "max": 99999})
                 
             }
         }
