@@ -41,7 +41,7 @@ class JSONPromptLoader:
 
 class CustomCounter:
     def __init__(self):
-        self.count = 0
+        self.count = -1
         logging.info("Counter initialized with count: %d", self.count)
 
     @classmethod
