@@ -49,7 +49,7 @@ class CustomCounter:
         logging.info("Counter INPUT_TYPES called")
         return {
             "required": {
-                "increment": ("INT", {"default": 1, "min": 1, "max": 999})
+                "increment": ("INT", {"default": 0, "min": 0, "max": 999})
             }
         }
     
