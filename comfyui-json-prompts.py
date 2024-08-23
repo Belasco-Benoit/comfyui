@@ -40,9 +40,11 @@ class JSONPromptLoader:
 class Counter:
     def __init__(self):
         self.count = 0
+        logging.info("Counter initialized")
 
     @classmethod
     def INPUT_TYPES(s):
+        logging.info("Counter INPUT_TYPES called")
         return {
             "required": {
                 "increment": ("INT", {"default": 1, "min": 1, "max": 999})
@@ -54,7 +56,9 @@ class Counter:
     CATEGORY = "utils"
 
     def count(self, increment):
+        logging.info(f"Counter.count called with increment: {increment}")
         self.count += increment
+        logging.info(f"New count: {self.count}")
         return (self.count,)
 
 NODE_CLASS_MAPPINGS = {
