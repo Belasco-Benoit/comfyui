@@ -14,7 +14,7 @@ class JSONPromptLoader:
             "required": {
                 "json_file": ("STRING", {"default": "prompts.json"}),
                 "mode": (["sequential", "random"], {"default": "sequential"}),
-                "external_index": ("INT", {"default": 0, "min": 0, "max": 99999})
+                "external_index": ("INT",)
             }
         }
     
