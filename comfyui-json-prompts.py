@@ -1,6 +1,8 @@
 import json
 import random
 import logging
+logging.basicConfig(level=logging.INFO)
+
 
 class JSONPromptLoader:
     def __init__(self):
@@ -37,10 +39,10 @@ class JSONPromptLoader:
         return (prompt,)
 
 
-class Counter:
+class CustomCounter:
     def __init__(self):
         self.count = 0
-        logging.info("Counter initialized")
+        logging.info("Counter initialized with count: %d", self.count)
 
     @classmethod
     def INPUT_TYPES(s):
@@ -52,19 +54,21 @@ class Counter:
         }
     
     RETURN_TYPES = ("INT",)
-    FUNCTION = "count"
+    FUNCTION = "increment_count"
     CATEGORY = "utils"
 
-    def count(self, increment):
-        logging.info(f"Counter.count called with increment: {increment}")
+    def increment_count(self, increment):
+        logging.info("Counter.count called with increment: %d", increment)
         self.count += increment
-        logging.info(f"New count: {self.count}")
+        logging.info("New count: %d", self.count)
         return (self.count,)
 
 NODE_CLASS_MAPPINGS = {
     "JSONPromptLoader": JSONPromptLoader,
-    "Counter": Counter
+    "Counter": CustomCounter
 }
+
+logging.info("NODE_CLASS_MAPPINGS: %s", NODE_CLASS_MAPPINGS)
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "JSONPromptLoader": "JSON Prompt Loader",
