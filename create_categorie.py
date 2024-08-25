@@ -1,11 +1,11 @@
-fichier = open("prompts2.json", "w")
+fichier = open("prompts3.json", "w")
 
 p = "unicolor shirt, cotton, portrait, illustration, digital art, soft colors, green background"
-p1 = ["man, short hair", "woman, long hair"]
+p1 = ["smiling man short hair", "smiling woman long hair"]
 p2 = ["brown hair", "blond hair", "red hair"]
-p3 = ["blue eyes", "brown eyes"]
-p4 = ["no hat", "red hat", "blue hat"]
-p5 = ["no flowers", "holding white flowers", "holding red flowers"]
+p3 = ["big blue eyes", "big brown eyes"]
+p4 = ["", "red hat", "blue hat"]
+p5 = ["", "holding big white flower", "holding big red flower"]
 
 prompts = []
 
