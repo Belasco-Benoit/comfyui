@@ -2,10 +2,10 @@ fichier = open("prompts3.json", "w")
 
 p = "unicolor shirt, cotton, portrait, illustration, digital art, soft colors, green background"
 p1 = ["smiling young man short hair", "smiling young woman long hair"]
-p2 = [" with brown hair", "with blond hair", "with red hair"]
-p3 = ["and big blue eyes", "and big brown eyes"]
-p4 = ["", "wearin big hat",]
-p5 = ["", "holding one big white flower", "holding one big red flower"]
+p2 = [" with brown hair", " with blond hair", " with red hair"]
+p3 = [" and big blue eyes", " and big brown eyes"]
+p4 = ["", " wearin big hat",]
+p5 = ["", " holding one big white flower", " holding one big red flower"]
 
 prompts = []
 
@@ -20,7 +20,7 @@ for e1 in p1:
                     prompts.append(prompt)
 
 prompts = str(prompts).replace("'", '"')
-print(prompts)
+#print(prompts)
 fichier.write(prompts)
 fichier.close()
 print(n, "prompts générés")
