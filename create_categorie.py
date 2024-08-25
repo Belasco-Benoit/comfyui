@@ -19,7 +19,7 @@ for e1 in p1:
                     prompt = e1 +e2 +e3 +e4 +e5 +' ,' +p
                     prompts.append(prompt)
 
-prompts = str(prompts).replace("'", '"')
+prompts = str(prompts).replace("'", '"').replace('", "', '",\n"')
 #print(prompts)
 fichier.write(prompts)
 fichier.close()
