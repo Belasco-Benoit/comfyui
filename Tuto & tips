@@ -68,7 +68,24 @@ Dans la console Google Cloud : https://console.cloud.google.com/compute
 ```http://35.192.206.127``` (remplacez par votre IP)
 *Note : bien utiliser http et pas https*
 
-Vous devriez vois l'interface de Comfy UI.
+Vous devriez voir l'interface de Comfy UI.
+
+---
+
+### Récupérer les fichiers
+Sur une deuxième session SSH
+Zipper les fichiers:
+zip - r images.zip /opt/ComfyUI/output
+Afficher les fichiers:
+Arrêter ComfyUI (CRT^C) sur la fenêtre SSH où comfyUI est lancé.
+Sur la deuxième fenêtre SSH:
+http-server -o /opt/ComfyUI/output -p 80 -a 0.0.0.0
+
+---
+
+### Si besoin de vider le cache
+rm -rf /opt/ComfyUI/__pycache__
+rm -rf /opt/ComfyUI/custom_nodes/__pycache__
 
 ---
 
