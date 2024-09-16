@@ -1,0 +1,91 @@
+# GCP - Comfy UI 
+
+## Google Cloud Platform 
+
+### Création de la VM
+Se rendre sur la page : 
+https://console.cloud.google.com/compute
+
+[ Créer une instance ] *laisser tout par défaut sauf :*
+
+- Nom : comfy-ui (ou ce que vous voulez)
+- Configuration de la machine : GPU
+- Type de GPU : NVIDIA L4
+- Disque de démarrage [CHANGER D'IMAGE]
+    - Version : Deep Learning VM width CUDA 11.8 M116
+    [SELECTIONNER]
+
+- Pare-Feu : Cochez Autoriser le trafic HTTP & HTTPS
+
+
+[CREER]
+
+**NOTE** : Si une erreur se produit concernant des Quotas. Co-coller le nom du Quota concerné. Se rendre sur : 
+https://console.cloud.google.com/iam-admin/quotas/
+Dans Filtre : tapper le nom du Quota. Puis [MODIFIER LES QUOTAS] en haut à droite. Répéter si nécéssaire si il manque certains Quotas.
+
+---
+
+### Configuration de la VM <sup>(à faire une seule fois)</sup>
+Cliquer sur Connecter [SSH]
+- Dans le terminal, le message : ```Would you like to install the Nvidia driver? [y/n]```
+- Tapper y - puis Entrée
+- *Attendre la fin de l'installation des drivers NVidia*
+- Tapper ```sudo -s``` 
+- Tapper ```apt update``` 
+- Tapper ```apt install aria2```  (Confirmer 'y')
+- Tapper ```pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121``` 
+
+La VM est prête.
+
+---
+
+### Installation de Comfy-UI <sup>(à faire une seule fois)</sup>
+
+- Tapper ```cd /opt``` 
+- Tapper ```git clone https://github.com/comfyanonymous/ComfyUI.git``` 
+- Tapper ```cd ComfyUI/```
+- Tapper ```pip install -r requirements.txt``` 
+
+Comfy UI est installé.
+
+---
+
+### Lancer Comfy UI
+- Se placer dans le répertoire Comfy UI : ```cd /opt/ComfyUI```
+- Tappez ```python3 main.py --listen 0.0.0.0 --port 80``` 
+
+Comfy UI est lancé, le terminal affiche : 
+```bash
+Starting server
+To see the GUI go to: http://0.0.0.0:80
+```
+---
+### Accéder à Comfy UI dans un navigateur
+Dans la console Google Cloud : https://console.cloud.google.com/compute
+- Notez l'adresse IP externe (exemple : 35.192.206.127)
+- Ouvrez un navigateur, puis tappez dans la barre d'URL : 
+```http://35.192.206.127``` (remplacez par votre IP)
+*Note : bien utiliser http et pas https*
+
+Vous devriez vois l'interface de Comfy UI.
+
+---
+
+### Télécharger un modele sur CivitAI
+
+Exemple de modèle : https://civitai.com/models/241415?modelVersionId=272376
+
+- Bouton droit sur le bouton de téléchargement : ```Copier l'adresse du lien```
+- Ouvrir un nouveau terminal de connexion SSH ```Settings > Nouvelle connexion``` [Associer]
+- Tapper ```sudo -s``` 
+- Se placer dans le répertoire des check points ```cd /opt/ComfyUI/models/checkpoints/```
+- Tapper ```aria2c -x 8 https://civitai.com/api/download/models/272376```
+- Attendre la fin du téléchargement
+- Dans l'interface de Comfy UI - Cliquer sur Refresh pour voir le modèle téléchargé.
+
+Certains modèle sont protégés. Vous devez disposer d'un compte Civitai et d'un TOKEN. Si le téléchargement échoue pour un problème d'authentification : 
+- Créer un compte Civitai (gratuit)
+- Allez dans votre profil Civitai > Account settings
+- Section API Keys > Add API Key > Notez bien la clé 
+- Ajouter : ?token=xxxxxxxxx à l'url de téléchargement du modèle
